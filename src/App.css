@@ -1,38 +1,208 @@
 .App {
-  text-align: center;
+  background-image: url("../src/images/bg.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.bg {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+nav {
+  background-color: hsl(175, 59%, 54%);
+}
+a {
+  text-decoration: none;
+  color: hsl(0, 0%, 100%);
+  font-weight: 500;
+}
+ul {
+  padding: 0;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  padding: 1em;
+}
+.sign-container {
+  display: flex;
+  gap: 1em;
+}
+.register {
+  background-color: hsl(180, 5%, 89%);
+  padding: 2em;
+  border-radius: 10px;
+  max-width: 400px;
+  width: 90%;
+  margin: 8em auto;
+  color: hsl(180, 23%, 24%);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+label {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  margin-bottom: 1em;
+}
+.label {
+  margin-bottom: 0.4em;
+}
+.title {
+  font-weight: 700;
+}
+.input-box {
+  padding: 0.8em;
+  border-radius: 10px;
+  border: 0;
+}
+.input-box:focus {
+  outline: 1px solid;
+}
+.submit {
+  width: 100%;
+  padding: 1em;
+  border: 0;
+  border-radius: 20px;
+  background-color: hsl(180, 23%, 24%);
+  color: hsl(0, 0%, 100%);
+}
+.transaction {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.5);
+  top: 0;
+  height: 100%;
+  width: 100%;
+  display: none;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+}
+.transaction[data-visible="true"] {
+  display: flex;
+}
+.show {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  background-image: url("../src/images/add_FILL0_wght400_GRAD0_opsz48.svg");
+  width: 45px;
+  height: 45px;
+  /* filter: brightness(1000); */
+  border-radius: 50%;
+  /* background-color: transparent; */
+  background-color: hsl(290, 77%, 74%);
+  border: 0;
+}
+.track-form {
+  /* background-color: #ffa7b4; */
+  background-color: hsl(271, 50%, 79%);
+  max-width: 500px;
+  width: 90%;
+  border-radius: 10px;
+  padding: 1em;
+  position: relative;
+}
+h1 {
+  margin: 1em;
+  font-size: 18px;
+}
+h3 {
+  text-align: center;
+  margin-bottom: 1em;
+}
+.content {
+  padding: 1em;
+}
+.margin-btn {
+  margin-bottom: 0.4em;
+}
+.fin {
+  max-width: 600px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-image: linear-gradient(
+    to right,
+    hsl(151, 28%, 65%) 35%,
+    rgb(130, 203, 216) 60%,
+    hsl(305, 52%, 81%)
+  );
+  margin-bottom: 1em;
+  padding: 1em;
+  border-radius: 10px;
+}
+.close {
+  background-image: url("../src/images/icon-close.svg");
+  width: 18px;
+  height: 18px;
+  border: 0;
+  background-color: transparent;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+.delete {
+  background-image: url("../src/images/delete_FILL0_wght400_GRAD0_opsz48.svg");
+  width: 18px;
+  height: 18px;
+  border: 0;
+  background-color: transparent;
+}
+.logout {
+  border: 0;
+  border-radius: 10px;
+  padding: 0.5em;
+  background-color: hsl(0, 0%, 100%);
+  color: hsl(180, 69%, 19%);
+}
+.dark {
+  color: hsl(180, 69%, 19%);
+}
+a:hover {
+  color: hsl(180, 69%, 19%);
+}
+.exp {
+  text-align: center;
+  margin-bottom: 1em;
+  font-weight: 700;
+}
+.addnew {
+  color: hsl(0, 0%, 100%);
+  background-color: hsl(290, 22%, 36%);
 }
 
-.App-link {
-  color: #61dafb;
+.logout:hover {
+  background-color: hsl(180, 69%, 19%);
+  color: hsl(0, 0%, 100%);
 }
+.submit:hover {
+  background-color: hsl(175, 59%, 54%);
+  color: hsl(180, 23%, 24%);
+}
+.addnew:hover {
+  background-color: hsl(266, 83%, 57%);
+}
+.add-inp{
+  padding: .8em;
+  border-radius: 10px;
+  border: 0;
+  
+}
+.add-inp:focus{
+outline: 1px solid hsl(266, 83%, 57%);
+}
+@media (min-width: 60rem) {
+  .delete:hover,
+  a:hover,
+  .show:hover,
+  .submit:hover,
+  .close:hover,
+  .logout:hover {
+    cursor: pointer;
+  }
+  .logout:hover {
+    background-color: hsl(180, 69%, 19%);
+    color: hsl(0, 0%, 100%);
+    cursor: pointer;
+  }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
