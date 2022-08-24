@@ -1,30 +1,38 @@
+// import userEvent from "@testing-library/user-event";
 import {  useEffect, useState } from "react";
 
-// import { db } from "../../firebase/config";
-// import { collection, addDoc,serverTimestamp } from "firebase/firestore";
+
+
 import { useAuthContext } from "../../hook/useAuthContext";
 import { useFirestore } from "../../hook/useFirestore";
 
-export default function Track({uid}) {
+
+export default function Track() {
   const [amount, setAmount] = useState("");
   const [name, setName] = useState("");
   const [date, setDate] = useState("");
-  const { dispatch,close } = useAuthContext();
+  const { dispatch,close,user } = useAuthContext();
  const {addDocument,response}=useFirestore("finance")
+
 
 const handleSubmit = (e) =>{
   e.preventDefault()
-addDocument({ name:name, amount:amount,date:date,uid})
+addDocument({ name:name, amount:amount,date:date,uid:user.uid})
+
 }
 
 useEffect(()=>{
   if (response.success) {
     console.log(response)
+  
       setAmount("")
       setName("")
       setDate("")
-      dispatch({ type: "ADD_FIN", payload: "false" });   
+     
+      dispatch({ type: "ADD_FIN", payload: "false" }); 
+     
   }
+
 },[response,dispatch])
   // const handleSubmit = async (e) => {
   //   e.preventDefault();
@@ -39,7 +47,7 @@ useEffect(()=>{
   //   setAmount("");
   //   setName("");
   //   setDate("");
-  //   dispatch({type:"ADD_FIN",payload:"false"})
+  //   dispatch({type:"ADDED_DOC",payload:"false"})
   // };
 
   return (

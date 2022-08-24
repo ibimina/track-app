@@ -19,7 +19,7 @@ export default function Home() {
         <List />
       </div>
       <div className="transaction" data-visible={close}>
-        <Track uid={user.uid} />
+        <Track />
       </div>
 
       <button onClick={handleShow} className="show bg">

@@ -18,7 +18,7 @@ setIslaoding(true)
 try {
     //sign up user
 const res = await createUserWithEmailAndPassword(auth,email,password)
-console.log(res.user)
+// console.log(res.user)
 if (!res) {
     throw new Error("could not complete sign uo")
 }

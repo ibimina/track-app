@@ -1,6 +1,5 @@
-
 //route import
-import {BrowserRouter,Route,Routes} from"react-router-dom"
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 //pages
 import Home from "./pages/home/Home";
@@ -9,21 +8,13 @@ import Signup from "./pages/Signup";
 import Navbar from "./component/Navbar";
 
 //styles
-import './App.css';
+import "./App.css";
 import { useAuthContext } from "./hook/useAuthContext";
 
-
-import { Navigate } from 'react-router-dom';
-// import { useState,useEffect } from "react";
+import { Navigate } from "react-router-dom";
 
 function App() {
-  const {authIsReady,user} =useAuthContext()
-// const [usser,setUsser]=useState(null)
-// useEffect(() => {
-// setUsser(true)
-
-  
-// }, [user])
+  const { authIsReady, user } = useAuthContext();
 
   return (
     <div className="App">
@@ -31,7 +22,10 @@ function App() {
         <BrowserRouter>
           <Navbar />
           <Routes>
-            <Route path="/" element={user ? <Home /> : <Navigate to="/login" />} />
+            <Route
+              path="/"
+              element={user ? <Home /> : <Navigate to="/login" />}
+            />
             <Route
               path="/login"
               element={user ? <Navigate to="/" /> : <Login />}
