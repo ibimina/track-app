@@ -5,7 +5,8 @@ import {
   onSnapshot,
   query,
   where,
-  orderBy,
+  orderBy
+
 } from "firebase/firestore";
 
 import { useState, useEffect, useRef } from "react";
@@ -28,7 +29,7 @@ export function useCollection(c, userDetails, order) {
     if (orderList) {
       ref = query(ref, orderBy(...orderList));
     }
-
+console.log(ref)
     const unsub = onSnapshot(ref, (snapshot) => {
       if (snapshot.empty) {
         setError("No documents found");

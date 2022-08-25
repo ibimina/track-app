@@ -1,37 +1,36 @@
 //firbase import
-import {auth} from "../firebase/config"
-import { createUserWithEmailAndPassword,updateProfile } from "firebase/auth"
-import { useState,useEffect } from "react"
+import { auth } from "../firebase/config";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { useState, useEffect } from "react";
 // import { async } from "@firebase/util"
 
 //react import
-import { useAuthContext } from "./useAuthContext"
+import { useAuthContext } from "./useAuthContext";
 
-export const useSignup =()=>{
-const [error,setError]= useState(null)
-const [islaoding,setIslaoding]=useState(false)
- const [cancel, setCancel] = useState(false);
-const {dispatch} = useAuthContext()
-const signup = async (email,password,displayName)=>{
-setError(null)
-setIslaoding(true)
-try {
-    //sign up user
-const res = await createUserWithEmailAndPassword(auth,email,password)
-// console.log(res.user)
-if (!res) {
-    throw new Error("could not complete sign uo")
-}
-//add display name to user
-updateProfile(res.user,{displayName})
+export const useSignup = () => {
+  const [error, setError] = useState(null);
+  const [islaoding, setIslaoding] = useState(false);
+  const [cancel, setCancel] = useState(false);
+  const { dispatch } = useAuthContext();
+  const signup = async (email, password, displayName) => {
+    setError(null);
+    setIslaoding(true);
+    try {
+      //sign up user
+      const res = await createUserWithEmailAndPassword(auth, email, password);
+      // console.log(res.user)
+      if (!res) {
+        throw new Error("could not complete sign up");
+      }
+      //add display name to user
+      updateProfile(res.user, { displayName });
 
-dispatch({ type: "LOGIN", payload: res.user });
+      dispatch({ type: "LOGIN", payload: res.user });
 
-setIslaoding(false)
-setError(null)
+      setIslaoding(false);
+      setError(null);
 
-
-     if (!cancel) {
+      if (!cancel) {
         setIslaoding(false);
         setError(null);
       }
@@ -47,5 +46,5 @@ setError(null)
     return () => setCancel(true);
   }, []);
 
-return {error,islaoding,signup}
-}
+  return { error, islaoding, signup };
+};

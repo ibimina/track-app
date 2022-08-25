@@ -6,7 +6,7 @@ export default function List() {
   const { user } = useAuthContext();
   const { deleteDocument } = useFirestore("finance");
   const { documents,error,isLoading} = useCollection("finance",["uid","==",user.uid],["createdAt","desc"]);
-
+{documents && console.log(documents)}
   const del = async (id) => {
     deleteDocument(id);
   };
