@@ -13,14 +13,15 @@ import { useState, useEffect, useRef } from "react";
 
 export function useCollection(c, userDetails, order) {
   const [documents, setDocuments] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+ 
   const [error, setError] = useState(false);
 
   const q = useRef(userDetails).current;
   const orderList = useRef(order).current;
 
   useEffect(() => {
-    setIsLoading(true);
+
+
     let ref = collection(db, c);
 
     if (q) {
@@ -29,11 +30,13 @@ export function useCollection(c, userDetails, order) {
     if (orderList) {
       ref = query(ref, orderBy(...orderList));
     }
-console.log(ref)
+
     const unsub = onSnapshot(ref, (snapshot) => {
+
+      console.log(ref)
       if (snapshot.empty) {
         setError("No documents found");
-        setIsLoading(false);
+      
       } else {
         let result = [];
         snapshot.docs.forEach((doc) => {
@@ -41,13 +44,13 @@ console.log(ref)
         });
       
       setDocuments(result);
-      setIsLoading(false);
+     
       }
 
     },(err) => {
         setError(err.message);
         console.log(err.message)
-        setIsLoading(false);
+    
       }
     
     
@@ -56,5 +59,5 @@ console.log(ref)
     return () => unsub;
   }, [c, q, orderList]);
 
-  return { documents,error,isLoading };
+  return { documents,error };
 }

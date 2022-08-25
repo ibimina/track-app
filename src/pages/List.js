@@ -5,15 +5,19 @@ import { useFirestore } from "../hook/useFirestore";
 export default function List() {
   const { user } = useAuthContext();
   const { deleteDocument } = useFirestore("finance");
-  const { documents,error,isLoading} = useCollection("finance",["uid","==",user.uid],["createdAt","desc"]);
-{documents && console.log(documents)}
+  const { documents,error} = useCollection(
+    "finance",
+  ["uid","==",user.uid],
+  ["createdAt","desc"]
+  );
+
   const del = async (id) => {
     deleteDocument(id);
   };
   return (
     <>
       {error && <>error</>}
-      {isLoading && <>loading...</>}
+ 
       {documents &&
         documents.map((tran) => (
           <div key={tran.id} className="fin">
